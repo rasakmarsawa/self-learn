@@ -1,0 +1,11 @@
+.
+├── backend
+│   └── go.main
+├── docker-compose.yml
+├── tree.txt
+└── worker
+    ├── go.mod
+    ├── go.sum
+    └── main.go
+
+3 directories, 6 files
