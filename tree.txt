@@ -1,6 +1,10 @@
 .
 ├── backend
-│   └── go.main
+│   ├── go.mod
+│   ├── go.sum
+│   └── main.go
+├── connection
+│   └── rabbitmq.go
 ├── docker-compose.yml
 ├── tree.txt
 └── worker
@@ -8,4 +12,4 @@
     ├── go.sum
     └── main.go
 
-3 directories, 6 files
+4 directories, 9 files
