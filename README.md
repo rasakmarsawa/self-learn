@@ -1,3 +1,21 @@
-clone the repo
-to run rabbitMQ, use docker-compose.yml
-to run backend and worker, need to install go and do 'go run .' in each folder
+# RabbitMQ Project
+
+Clone the repository to run RabbitMQ.
+
+## Requirements
+
+* Docker
+* Docker Compose
+* Go
+
+## Run
+
+Use `docker-compose.yml` to run RabbitMQ.
+
+Then run the backend and worker by installing Go and running:
+
+```bash
+go run .
+```
+
+Run `go run .` in each folder.
