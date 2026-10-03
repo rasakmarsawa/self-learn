@@ -5,6 +5,7 @@ import (
 
 	"backend/connection"
 	"backend/controller"
+	"backend/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,19 +13,29 @@ import (
 func main() {
 	conn, ch, queue, err := connection.InitRabbitMQ()
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("rabbitmq unavailable, message endpoint disabled: %v", err)
 	}
-	defer conn.Close()
-	defer ch.Close()
+
+	var messageController controller.MessageController
+	if err == nil {
+		defer conn.Close()
+		defer ch.Close()
+		messageController = controller.MessageController{
+			Channel: ch,
+			Queue:   queue,
+		}
+	}
 
 	router := gin.Default()
 
-	messageController := controller.MessageController{
-		Channel: ch,
-		Queue:   queue,
-	}
+	router.POST("/messages",
+		middleware.RequireQueueConnection(conn, ch),
+		messageController.CreateMessage,
+	)
 
-	router.POST("/messages", messageController.CreateMessage)
+	router.POST("/ask", 
+		messageController.Ask,
+	)
 
 	log.Println("Backend running on :8080")
 
