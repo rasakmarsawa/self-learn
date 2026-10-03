@@ -1,2 +1,4 @@
 backend/.env
+auth/.env
+auth/key/*
 .kilo
