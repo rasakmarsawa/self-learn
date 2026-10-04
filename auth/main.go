@@ -5,29 +5,42 @@ import (
 
 	"auth/controller"
 	"auth/middleware"
+	"auth/connection"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	redisClient := connection.InitRedis()
+
+	authController := controller.NewAuthController(redisClient)
+
 	router := gin.Default()
 
 	router.GET("/hello",
-		controller.Hello,
+		authController.Hello,
 	)
 
 	router.POST("/login",
-		controller.Login,
+		authController.Login,
 	)
 
-	router.POST("/authenticated-hello",
+	router.POST("/refresh",
+		authController.Refresh,
+	)
+
+	router.POST("/logout",
+		authController.Logout,
+	)	
+
+	router.GET("/authenticated-hello",
 		middleware.ValidateToken(),
-		controller.Hello,
+		authController.Hello,
 	)
 
-	log.Println("Backend running on :8080")
+	log.Println("Auth running on :8081")
 
-	if err := router.Run(":8080"); err != nil {
+	if err := router.Run(":8081"); err != nil {
 		log.Fatal(err)
 	}
 }

@@ -1,15 +1,37 @@
 .
-├── backend
+├── auth
+│   ├── connection
+│   │   └── redis.go
+│   ├── controller
+│   │   └── auth.go
+│   ├── dto
+│   │   └── login.go
 │   ├── go.mod
 │   ├── go.sum
-│   └── main.go
-├── connection
-│   └── rabbitmq.go
+│   ├── key
+│   │   ├── private.pem
+│   │   └── public.pem
+│   ├── main.go
+│   └── middleware
+│       └── validate.go
+├── backend
+│   ├── connection
+│   │   └── rabbitmq.go
+│   ├── controller
+│   │   └── message.go
+│   ├── dto
+│   │   └── message_dto.go
+│   ├── go.mod
+│   ├── go.sum
+│   ├── main.go
+│   └── middleware
+│       └── queue_connection.go
 ├── docker-compose.yml
+├── README.md
 ├── tree.txt
 └── worker
     ├── go.mod
     ├── go.sum
     └── main.go
 
-4 directories, 9 files
+13 directories, 22 files
