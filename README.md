@@ -1,6 +1,6 @@
-# RabbitMQ Project
+# My Go Project
 
-Clone the repository to run RabbitMQ.
+Clone the repository.
 
 ## Requirements
 
@@ -10,9 +10,9 @@ Clone the repository to run RabbitMQ.
 
 ## Run
 
-Use `docker-compose.yml` to run RabbitMQ.
+Use `docker-compose.yml` to run RabbitMQ & Redis.
 
-Then run the backend and worker by installing Go and running:
+Then run the backend, worker, auth by installing Go and running:
 
 ```bash
 go run .
